@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 07:08:45 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 17:41:14 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/21 18:04:14 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	execute_command(int input, int output, char *cmd, char *env[]);
 char	*get_right_path(char *env[], char *cmd);
 char	*get_right_path_utils(t_path *corr_path, char *cmd, char *env[]);
 void	close_and_free(t_pipex pipex);
+void	manage_error(t_pipex *pipex);
 #endif
