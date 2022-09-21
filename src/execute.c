@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:32:48 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 17:41:29 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/21 22:22:13 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ void	execute_command(int input, int output, char *cmd, char *env[])
 	char	**exec;
 
 	if (dup2(input, 0) == -1)
-		perror("Redirecting input error");
+		ft_error("Redirecting input error");
 	if (dup2(output, 1) == -1)
-		perror("Redirecting output error");
+		ft_error("Redirecting output error");
 	exec = ft_split(cmd, ' ');
 	right_path = check_command(exec[0], env);
 	if (!right_path)
-	{
-		write(2, "No such file or directory\n", 26);
 		exit(1);
-	}
 	execve(right_path, exec, env);
+	close(output);
 }
 
 char	*get_right_path_utils(t_path *corr_path, char *cmd, char *env[])

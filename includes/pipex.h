@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 07:08:45 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 18:04:14 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/21 21:51:40 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ typedef struct s_pipex
 {
 	int	in_file;
 	int	out_file;
-	int	fd_pipe[2];
+	int	*fd_pipe;
 	int	status;
-	int	child1_id;
-	int	child2_id;
+	int	*child_pid;
+	int	input;
+	int	output;
 }	t_pipex;
 
 typedef struct s_path
@@ -54,6 +55,9 @@ char	*check_command(char *cmd, char *env[]);
 void	execute_command(int input, int output, char *cmd, char *env[]);
 char	*get_right_path(char *env[], char *cmd);
 char	*get_right_path_utils(t_path *corr_path, char *cmd, char *env[]);
-void	close_and_free(t_pipex pipex);
-void	manage_error(t_pipex *pipex);
+void	close_and_free(t_pipex pipex, int n);
+void	manage_error(t_pipex *pipex, int n);
+void	close_pipes(t_pipex *pipex, int n);
+void	ft_error(char *str);
+void	input_output(t_pipex *pipex, int i, int n);
 #endif
