@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:48:15 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 13:38:44 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:55:12 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@ void	ft_error(char *str)
 {
 	perror(str);
 	exit(0);
+}
+
+void	usage_error(int argc, char *argv[])
+{	
+	if (argc < 5)
+	{
+		if (argc >= 2 && !ft_strncmp(argv[1], "here_doc", 7))
+			ft_putstr_fd(2, "Usage: ./pipex here_doc LIMITER c1 ... cn out");
+		else
+			ft_putstr_fd(2, "Usage: ./pipex infile cmd1 cmd2 ... cmdn outfile");
+		exit(0);
+	}
+	else if (argc < 6 && !ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])))
+	{
+		ft_putstr_fd(2, "Usage: ./pipex here_doc LIMITER cmd1 ... cmdn out");
+		exit(0);
+	}
 }
 
 void	manage_error(t_pipex *pipex, int n)

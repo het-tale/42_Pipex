@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 07:08:45 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 01:02:11 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:49:34 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s1);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
+void	ft_putstr_fd(int fd, char *str);
 /*---------------get_next_line------------------------*/
 char	*get_next_line(int fd);
 char	*extract_line(char *str);
@@ -72,4 +73,5 @@ void	ft_error(char *str);
 void	input_output(t_pipex *pipex, int i, int n);
 void	here_doc_implementation(t_pipex *pipex, int argc, char *argv[]);
 void	init_args(t_pipex *pipex, int argc, char *argv[]);
+void	usage_error(int argc, char *argv[]);
 #endif

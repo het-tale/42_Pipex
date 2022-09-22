@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:05:57 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 01:10:30 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:42:16 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[], char *env[])
 	int		i;
 	int		index;
 
+	usage_error(argc, argv);
 	init_args(&pipex, argc, argv);
 	i = 0;
 	while (i < pipex.nb_cmd)
