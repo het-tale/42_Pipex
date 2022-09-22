@@ -6,13 +6,13 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 18:58:41 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 15:05:03 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 00:02:00 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static void	ft_cpy(char *substr, char const *s, size_t len, unsigned int start)
+static void	ft_copy(char *substr, char const *s, size_t len, unsigned int start)
 {
 	size_t	i;
 
@@ -41,7 +41,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr = (char *)malloc((len + 1) * sizeof(char));
 		if (!substr)
 			return (0);
-		ft_cpy(substr, s, len, start);
+		ft_copy(substr, s, len, start);
 	}
 	else
 	{

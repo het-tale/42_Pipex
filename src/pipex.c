@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:48:15 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 21:51:16 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 01:14:19 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ void	close_and_free(t_pipex pipex, int n)
 	i = 0;
 	close(pipex.in_file);
 	close(pipex.out_file);
+	unlink("temp_file");
 	while (i < (n - 1) * 2)
 	{
 		close(pipex.fd_pipe[i]);
 		i++;
 	}
 	waitpid(-1, &(pipex.status), 0);
+	free(pipex.child_pid);
+	free(pipex.fd_pipe);
 }
 
 void	close_pipes(t_pipex *pipex, int n)

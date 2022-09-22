@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:05:57 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 21:52:52 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 01:10:30 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,21 @@ int	main(int argc, char *argv[], char *env[])
 {
 	t_pipex	pipex;
 	int		i;
-	int		n;
+	int		index;
 
-	pipex.fd_pipe = malloc(sizeof(int) * (argc - 4) * 2);
-	pipex.child_pid = malloc(sizeof(int) * (argc - 3));
+	init_args(&pipex, argc, argv);
 	i = 0;
-	n = argc - 3;
-	pipex.out_file = open(argv[argc - 1], O_CREAT | O_TRUNC | O_RDWR, 0777);
-	pipex.in_file = open(argv[1], O_RDONLY, 0444);
-	manage_error(&pipex, n);
-	while (i < n)
+	while (i < pipex.nb_cmd)
 	{
-		input_output(&pipex, i, n);
+		index = i + pipex.cmd_index;
+		input_output(&pipex, i, pipex.nb_cmd);
 		pipex.child_pid[i] = fork();
 		if (pipex.child_pid[i] == 0)
 		{
-			close_pipes(&pipex, (argc - 4) * 2);
-			execute_command(pipex.input, pipex.output, argv[i + 2], env);
+			close_pipes(&pipex, (pipex.nb_cmd - 1) * 2);
+			execute_command(pipex.input, pipex.output, argv[index], env);
 		}
 		i++;
 	}
-	close_and_free(pipex, n);
+	close_and_free(pipex, pipex.nb_cmd);
 }

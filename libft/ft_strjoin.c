@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 19:23:36 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 15:48:13 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 00:13:32 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (0);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
 	join = (char *)malloc((s1len + s2len + 1) * sizeof(char));
