@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:28:57 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 01:19:13 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:02:45 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,20 @@ void	here_doc_implementation(t_pipex *pipex, int argc, char *argv[])
 	char	*line;
 
 	temp_fd = open("temp_file", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	line = get_next_line(0);
-	while (line)
+	line = "";
+	while (1)
 	{
-		if (!ft_strncmp(argv[2], line, ft_strlen(argv[2])))
-			break ;
-		write(temp_fd, line, ft_strlen(line));
 		line = get_next_line(0);
+		if (line == NULL)
+			break ;
+		if (!ft_strncmp(argv[2], line, ft_strlen(argv[2]))
+			&& (ft_strlen(argv[2]) + 1) == ft_strlen(line))
+		{
+			free(line);
+			break ;
+		}
+		write(temp_fd, line, ft_strlen(line));
+		free(line);
 	}
 	close(temp_fd);
 	pipex->out_file = open(argv[argc - 1], O_CREAT | O_APPEND | O_RDWR, 0777);
