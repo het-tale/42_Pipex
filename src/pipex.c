@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:48:15 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 14:55:12 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:56:07 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	manage_error(t_pipex *pipex, int n)
 		ft_error("outfile fd");
 	if (pipex->in_file == -1)
 		perror("infile fd");
-	(void)n;
-	(void)i;
 	while (i < n - 1)
 	{	
 		if (pipe(pipex->fd_pipe + 2 * i) == -1)

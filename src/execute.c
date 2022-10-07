@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:32:48 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/21 22:22:13 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:29:48 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	execute_command(int input, int output, char *cmd, char *env[])
 	exec = ft_split(cmd, ' ');
 	right_path = check_command(exec[0], env);
 	if (!right_path)
-		exit(1);
+		ft_error("Command Error");
 	execve(right_path, exec, env);
 	close(output);
 }

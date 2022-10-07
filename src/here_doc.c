@@ -6,7 +6,7 @@
 /*   By: het-tale <het-tale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 23:28:57 by het-tale          #+#    #+#             */
-/*   Updated: 2022/09/22 14:02:45 by het-tale         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:48:26 by het-tale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	here_doc_implementation(t_pipex *pipex, int argc, char *argv[])
 	int		temp_fd;
 	char	*line;
 
-	temp_fd = open("temp_file", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	temp_fd = open("temp_file", O_CREAT | O_WRONLY | O_APPEND, 0644);
 	line = "";
 	while (1)
 	{
@@ -53,7 +53,7 @@ void	here_doc_implementation(t_pipex *pipex, int argc, char *argv[])
 		free(line);
 	}
 	close(temp_fd);
-	pipex->out_file = open(argv[argc - 1], O_CREAT | O_APPEND | O_RDWR, 0777);
+	pipex->out_file = open(argv[argc - 1], O_CREAT | O_TRUNC | O_RDWR, 0777);
 	pipex->in_file = open("temp_file", O_RDONLY, 0444);
 	pipex->nb_cmd = argc - 4;
 	pipex->cmd_index = 3;
